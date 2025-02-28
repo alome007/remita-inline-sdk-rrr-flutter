@@ -110,7 +110,7 @@ class _RemitaInLineViewState extends State<RemitaInLineView> {
   InAppWebView getWebView() {
     return InAppWebView(
       key: _webViewKey,
-      initialUrlRequest: URLRequest(url: Uri.parse("about:blank")),
+      initialUrlRequest: URLRequest(url: WebUri("about:blank")),
       initialOptions: RemitaUtils.inAppBrowserOptions,
       onWebViewCreated: (InAppWebViewController controller) async {
         _webViewController = controller;
