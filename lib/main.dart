@@ -82,19 +82,29 @@ class _MyHomePageState extends State<MyHomePage> {
       key: 'QzAwMDAyNzEyNTl8MTEwNjE4NjF8OWZjOWYwNmMyZDk3MDRhYWM3YThiOThlNTNjZTE3ZjYxOTY5NDdmZWE1YzU3NDc0ZjE2',
     );
 
-    RemitaPayment remita = RemitaInlinePayment(
-      buildContext: context,
-      paymentRequest: request,
-      customizer: Customizer(),
-    );
+    try {
+      // Create new RemitaPayment instance for each payment attempt
+      RemitaPayment remita = RemitaInlinePayment(
+        buildContext: context,
+        paymentRequest: request,
+        customizer: Customizer(),
+      );
 
-    PaymentResponse response = await remita.initiatePayment();
-    if (response.code != null && response.code == '00') {
-      // transaction successful
-      // verify transaction status before providing value
-    } else {
-      // transaction not successful.
+      PaymentResponse response = await remita.initiatePayment();
+      if (response.code != null && response.code == '00') {
+        // transaction successful
+        // verify transaction status before providing value
+        debugPrint('Payment successful: ${response.toString()}');
+      } else {
+        // transaction not successful.
+        debugPrint('Payment failed: ${response.toString()}');
+      }
+      log(response.toString());
+    } catch (e) {
+      debugPrint('Payment error: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Payment error: $e')),
+      );
     }
-    log(response.toString());
   }
 }

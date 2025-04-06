@@ -37,6 +37,7 @@ class _RemitaInLineViewState extends State<RemitaInLineView> {
   late InAppWebViewController? _webViewController;
   late bool _isWebViewActive;
   late bool _isLoading;
+  int _viewIdCounter = 1;
 
   @override
   void initState() {
@@ -49,6 +50,7 @@ class _RemitaInLineViewState extends State<RemitaInLineView> {
   void dispose() {
     widget._streamController.close();
     _isWebViewActive = false;
+    _webViewController = null;
     super.dispose();
   }
 
@@ -109,7 +111,7 @@ class _RemitaInLineViewState extends State<RemitaInLineView> {
 
   InAppWebView getWebView() {
     return InAppWebView(
-      key: _webViewKey,
+      key: ValueKey('webview_${_viewIdCounter++}'),
       initialUrlRequest: URLRequest(url: WebUri("about:blank")),
       initialOptions: RemitaUtils.inAppBrowserOptions,
       onWebViewCreated: (InAppWebViewController controller) async {
