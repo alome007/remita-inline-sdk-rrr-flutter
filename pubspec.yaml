@@ -35,8 +35,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  remita_flutter_inline:
-    path: /Users/astrocoder/StudioProjects/Misc/remita-inline-sdk-rrr-flutter
+#  remita_flutter_inline:
+#    path: /Users/astrocoder/StudioProjects/Misc/remita-inline-sdk-rrr-flutter
 
 dev_dependencies:
   flutter_test:
